@@ -6,7 +6,7 @@
 
 ## 🛠️ 개발 환경 (Environment)
 - Language: Java 100%
-- Tool: Eclipse / VS Code
+- Tool: Eclipse 
 - VCS: Git / GitHub
 
 ## 🏃 실행 방법
