@@ -1,6 +1,12 @@
 # 🚀 수강신청 데이터베이스 시스템 (Hero)
 > **20225531 김태우**의 Java Swing & MySQL 연동 수강신청 관리 프로그램입니다.
 
+## ⚡ 시스템 효율성 개선 경험 (System Efficiency Optimization)
+본 프로젝트는 대용량 데이터 환경과 다중 사용자 환경을 고려하여, 자바 Swing 클라이언트와 MySQL 데이터베이스 간의 통신 및 렌더링 효율성을 다음과 같이 개선하였습니다.
+
+- **대용량 데이터 조회 효율성 개선 (DB 페이징 처리 도입):** `PPButtonListener` 클래스 내에 `LIMIT` 쿼리를 활용한 페이징 메커니즘(RECORDS_PER_PAGE = 10)을 구현했습니다. 한 번에 10개씩만 잘라서 가져오기 때문에 전체 조회 대비 네트워크 트래픽을 줄이고 GUI 렌더링 속도를 극대화했습니다.
+- **중복 데이터 방지를 위한 정규화 및 데이터베이스 참조 최적화:** `SButtonListener`에서 `SELECT`로 기존 데이터의 존재 여부를 먼저 확인한 후, 데이터가 없을 때만 `INSERT`를 수행하고 생성된 Key값(`prof_id`, `subject_id`)만 참조하도록 설계하여 디스크 용량을 최적화했습니다.
+
 ### 🎬 DEMO
 - 데이터베이스(MySQL)에 저장된 학생 및 수강 정보를 GUI 화면을 통해 실시간으로 확인하고 제어할 수 있습니다.
 - (추후 실제 실행 화면 GUI 캡처 이미지 또는 GIF가 추가될 예정입니다.)
@@ -31,7 +37,7 @@
 ### 🏗️ Architecture (구조)
 - **Language & UI:** Java (JDBC, Swing Component, RiverLayout)
 - **Database:** MySQL (class, subject_app, subject, profession 테이블 간의 NATURAL JOIN 활용)
-- **주요 클래스:**
+- **주요 구성 요소:**
   - `Subject_Application`: 메인 GUI 창 및 DB 연동 총괄
   - `MainPanel`: 배경 이미지를 그리기 위한 커스텀 패널 클래스
   - `SButtonListener` / `DButtonListener` / `SearchListener`: 저장, 삭제, 검색 등 각 버튼의 이벤트 처리 클래스
